@@ -88,11 +88,11 @@ namespace RecoveryDB
             LoadDiskData();
         }
 
-        public Dictionary<string, int> GetDictionaryRegisters()
+        public Dictionary<int, string> GetDictionaryRegisters()
         {
-            var dict = new Dictionary<string, int>();
+            var dict = new Dictionary<int, string>();
             LoadDiskData();
-            diskRow.ForEach(x => dict.Add(x.Name, x.ID));
+            diskRow.ForEach(x => dict.Add(x.ID, x.Name));
             return dict;
         }
 

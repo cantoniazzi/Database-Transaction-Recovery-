@@ -11,13 +11,13 @@ using System.Windows.Forms;
 
 namespace RecoveryDB
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        List<string> transactions = new List<string>();
-
-        public Form1()
+       
+        public MainForm()
         {
             InitializeComponent();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -42,20 +42,30 @@ namespace RecoveryDB
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-
+            DiskData diskData = new DiskData();
+            comboRegister.DataSource = new BindingSource(diskData.GetDictionaryRegisters(), null);
+            
+            BufferLog bufferLog = new BufferLog();
+            
         }
 
         private void btnExecute_Click(object sender, EventArgs e)
         {
             listBufferLog.DataSource = null;
             Transaction transaction = new Transaction();
-            transaction.transaction = "<inicio TA>\n" + 
-                                      "<fim TA>";
-
-            transactions.Add(transaction.transaction);
-            listBufferLog.DataSource = transactions;
             
+            transaction.setBeforeImage((int)comboRegister.SelectedValue);
+            transaction.afterImage = double.Parse(txtValue.Text);
+            
+            //transaction.transaction = "<inicio TA><fim TA>";
+            //transactions.Add(transaction.transaction);
+            //listBufferLog.DataSource = transactions;
+            
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

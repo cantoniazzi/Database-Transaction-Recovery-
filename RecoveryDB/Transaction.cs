@@ -8,6 +8,18 @@ namespace RecoveryDB
 {
     class Transaction
     {
-        public string transaction { get; set; }
+        public int registerID { get; set; }
+        public double beforeImage { get; set; }
+        public double afterImage { get; set; }
+
+        public const string tableName = "funcionario";
+        public const int transactionID = 1;
+
+        public void setBeforeImage(int _id)
+        {
+            DiskData diskData = new DiskData();
+            this.beforeImage = diskData.GetSalaryById(_id);
+        }
+        
     }
 }
