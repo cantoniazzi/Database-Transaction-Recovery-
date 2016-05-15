@@ -1,6 +1,6 @@
 ﻿namespace RecoveryDB
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -41,7 +41,7 @@
             this.comboRegister = new System.Windows.Forms.ComboBox();
             this.btnExecute = new System.Windows.Forms.Button();
             this.listBufferLog = new System.Windows.Forms.ListBox();
-            this.listBufferDisk = new System.Windows.Forms.ListBox();
+            this.listLogDisk = new System.Windows.Forms.ListBox();
             this.listBufferData = new System.Windows.Forms.ListBox();
             this.listDiskData = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
@@ -82,9 +82,10 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(302, 281);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 13);
+            this.label3.Size = new System.Drawing.Size(49, 13);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Disk Buffer";
+            this.label3.Text = "Log Disk";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -144,11 +145,13 @@
             // 
             // comboRegister
             // 
+            this.comboRegister.DisplayMember = "value";
             this.comboRegister.FormattingEnabled = true;
             this.comboRegister.Location = new System.Drawing.Point(12, 40);
             this.comboRegister.Name = "comboRegister";
             this.comboRegister.Size = new System.Drawing.Size(121, 21);
             this.comboRegister.TabIndex = 19;
+            this.comboRegister.ValueMember = "key";
             // 
             // btnExecute
             // 
@@ -171,13 +174,13 @@
             this.listBufferLog.Size = new System.Drawing.Size(169, 160);
             this.listBufferLog.TabIndex = 21;
             // 
-            // listBufferDisk
+            // listLogDisk
             // 
-            this.listBufferDisk.FormattingEnabled = true;
-            this.listBufferDisk.Location = new System.Drawing.Point(243, 297);
-            this.listBufferDisk.Name = "listBufferDisk";
-            this.listBufferDisk.Size = new System.Drawing.Size(169, 160);
-            this.listBufferDisk.TabIndex = 22;
+            this.listLogDisk.FormattingEnabled = true;
+            this.listLogDisk.Location = new System.Drawing.Point(243, 297);
+            this.listLogDisk.Name = "listLogDisk";
+            this.listLogDisk.Size = new System.Drawing.Size(169, 160);
+            this.listLogDisk.TabIndex = 22;
             // 
             // listBufferData
             // 
@@ -195,14 +198,14 @@
             this.listDiskData.Size = new System.Drawing.Size(169, 160);
             this.listDiskData.TabIndex = 24;
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(957, 502);
             this.Controls.Add(this.listDiskData);
             this.Controls.Add(this.listBufferData);
-            this.Controls.Add(this.listBufferDisk);
+            this.Controls.Add(this.listLogDisk);
             this.Controls.Add(this.listBufferLog);
             this.Controls.Add(this.btnExecute);
             this.Controls.Add(this.comboRegister);
@@ -216,7 +219,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCommit);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Recovery Project";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -239,7 +242,7 @@
         private System.Windows.Forms.ComboBox comboRegister;
         private System.Windows.Forms.Button btnExecute;
         private System.Windows.Forms.ListBox listBufferLog;
-        private System.Windows.Forms.ListBox listBufferDisk;
+        private System.Windows.Forms.ListBox listLogDisk;
         private System.Windows.Forms.ListBox listBufferData;
         private System.Windows.Forms.ListBox listDiskData;
     }
