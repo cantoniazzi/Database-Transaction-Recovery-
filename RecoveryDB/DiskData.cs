@@ -56,7 +56,7 @@ namespace RecoveryDB
             reader.Close();
         }
 
-        public void SaveDiskData()
+        private void SaveDiskData()
         {
             var writer = streamWriter;
             diskRow.ForEach(x => writer.WriteLine(x.ID + "," + x.Name + "," + x.Salary));
@@ -87,5 +87,14 @@ namespace RecoveryDB
             SaveDiskData();
             LoadDiskData();
         }
+
+        public Dictionary<string, int> GetDictionaryRegisters()
+        {
+            var dict = new Dictionary<string, int>();
+            LoadDiskData();
+            diskRow.ForEach(x => dict.Add(x.Name, x.ID));
+            return dict;
+        }
+
     }
 }

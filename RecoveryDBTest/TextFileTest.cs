@@ -41,5 +41,12 @@ namespace RecoveryDBTest
             diskData.SetNameById(3, "Pedro");
             diskData.GetRowById(3).Name.Should().Be("Pedro");
         }
+        [TestMethod]
+        public void CreateDictionary()
+        {
+            var diskData = new DiskData();
+            var dict = diskData.GetDictionaryRegisters();
+            dict["Maria"].Should().Be(1);
+        }
     }
 }
