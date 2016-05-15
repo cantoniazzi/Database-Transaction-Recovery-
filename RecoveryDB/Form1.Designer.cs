@@ -35,19 +35,21 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnCheckpoint = new System.Windows.Forms.Button();
             this.btnFalha = new System.Windows.Forms.Button();
-            this.listBufferLog = new System.Windows.Forms.ListView();
-            this.listDataBuffer = new System.Windows.Forms.ListView();
-            this.listDiskBuffer = new System.Windows.Forms.ListView();
-            this.listDataDisk = new System.Windows.Forms.ListView();
             this.lblRegister = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textValor = new System.Windows.Forms.TextBox();
             this.txtValue = new System.Windows.Forms.Label();
             this.comboRegister = new System.Windows.Forms.ComboBox();
+            this.btnExecute = new System.Windows.Forms.Button();
+            this.listBufferLog = new System.Windows.Forms.ListBox();
+            this.listBufferDisk = new System.Windows.Forms.ListBox();
+            this.listBufferData = new System.Windows.Forms.ListBox();
+            this.listDiskData = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // btnCommit
             // 
-            this.btnCommit.Location = new System.Drawing.Point(27, 186);
+            this.btnCommit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCommit.Location = new System.Drawing.Point(24, 102);
             this.btnCommit.Name = "btnCommit";
             this.btnCommit.Size = new System.Drawing.Size(86, 34);
             this.btnCommit.TabIndex = 0;
@@ -58,7 +60,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(321, 63);
+            this.label1.Location = new System.Drawing.Point(302, 83);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 2;
@@ -68,7 +70,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(484, 63);
+            this.label2.Location = new System.Drawing.Point(505, 83);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 13);
             this.label2.TabIndex = 4;
@@ -78,7 +80,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(321, 261);
+            this.label3.Location = new System.Drawing.Point(302, 281);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 13);
             this.label3.TabIndex = 6;
@@ -87,7 +89,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(491, 261);
+            this.label4.Location = new System.Drawing.Point(486, 281);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(54, 13);
             this.label4.TabIndex = 8;
@@ -95,7 +97,8 @@
             // 
             // btnCheckpoint
             // 
-            this.btnCheckpoint.Location = new System.Drawing.Point(27, 226);
+            this.btnCheckpoint.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCheckpoint.Location = new System.Drawing.Point(24, 142);
             this.btnCheckpoint.Name = "btnCheckpoint";
             this.btnCheckpoint.Size = new System.Drawing.Size(86, 37);
             this.btnCheckpoint.TabIndex = 9;
@@ -105,66 +108,35 @@
             // btnFalha
             // 
             this.btnFalha.BackColor = System.Drawing.Color.Red;
+            this.btnFalha.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFalha.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnFalha.Location = new System.Drawing.Point(27, 272);
+            this.btnFalha.Location = new System.Drawing.Point(24, 188);
             this.btnFalha.Name = "btnFalha";
             this.btnFalha.Size = new System.Drawing.Size(86, 39);
             this.btnFalha.TabIndex = 10;
             this.btnFalha.Text = "Simular Falha";
             this.btnFalha.UseVisualStyleBackColor = false;
             // 
-            // listBufferLog
-            // 
-            this.listBufferLog.Location = new System.Drawing.Point(262, 82);
-            this.listBufferLog.Name = "listBufferLog";
-            this.listBufferLog.Size = new System.Drawing.Size(170, 161);
-            this.listBufferLog.TabIndex = 11;
-            this.listBufferLog.UseCompatibleStateImageBehavior = false;
-            // 
-            // listDataBuffer
-            // 
-            this.listDataBuffer.Location = new System.Drawing.Point(437, 82);
-            this.listDataBuffer.Name = "listDataBuffer";
-            this.listDataBuffer.Size = new System.Drawing.Size(170, 161);
-            this.listDataBuffer.TabIndex = 12;
-            this.listDataBuffer.UseCompatibleStateImageBehavior = false;
-            // 
-            // listDiskBuffer
-            // 
-            this.listDiskBuffer.Location = new System.Drawing.Point(262, 277);
-            this.listDiskBuffer.Name = "listDiskBuffer";
-            this.listDiskBuffer.Size = new System.Drawing.Size(170, 161);
-            this.listDiskBuffer.TabIndex = 13;
-            this.listDiskBuffer.UseCompatibleStateImageBehavior = false;
-            // 
-            // listDataDisk
-            // 
-            this.listDataDisk.Location = new System.Drawing.Point(437, 277);
-            this.listDataDisk.Name = "listDataDisk";
-            this.listDataDisk.Size = new System.Drawing.Size(170, 161);
-            this.listDataDisk.TabIndex = 14;
-            this.listDataDisk.UseCompatibleStateImageBehavior = false;
-            // 
             // lblRegister
             // 
             this.lblRegister.AutoSize = true;
-            this.lblRegister.Location = new System.Drawing.Point(12, 63);
+            this.lblRegister.Location = new System.Drawing.Point(9, 23);
             this.lblRegister.Name = "lblRegister";
             this.lblRegister.Size = new System.Drawing.Size(51, 13);
             this.lblRegister.TabIndex = 16;
             this.lblRegister.Text = "Registros";
             // 
-            // textBox1
+            // textValor
             // 
-            this.textBox1.Location = new System.Drawing.Point(15, 138);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(116, 20);
-            this.textBox1.TabIndex = 17;
+            this.textValor.Location = new System.Drawing.Point(173, 41);
+            this.textValor.Name = "textValor";
+            this.textValor.Size = new System.Drawing.Size(116, 20);
+            this.textValor.TabIndex = 17;
             // 
             // txtValue
             // 
             this.txtValue.AutoSize = true;
-            this.txtValue.Location = new System.Drawing.Point(12, 122);
+            this.txtValue.Location = new System.Drawing.Point(170, 23);
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(31, 13);
             this.txtValue.TabIndex = 18;
@@ -173,24 +145,70 @@
             // comboRegister
             // 
             this.comboRegister.FormattingEnabled = true;
-            this.comboRegister.Location = new System.Drawing.Point(15, 80);
+            this.comboRegister.Location = new System.Drawing.Point(12, 40);
             this.comboRegister.Name = "comboRegister";
             this.comboRegister.Size = new System.Drawing.Size(121, 21);
             this.comboRegister.TabIndex = 19;
+            // 
+            // btnExecute
+            // 
+            this.btnExecute.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnExecute.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExecute.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnExecute.Location = new System.Drawing.Point(326, 33);
+            this.btnExecute.Name = "btnExecute";
+            this.btnExecute.Size = new System.Drawing.Size(86, 34);
+            this.btnExecute.TabIndex = 20;
+            this.btnExecute.Text = "Executa";
+            this.btnExecute.UseVisualStyleBackColor = false;
+            this.btnExecute.Click += new System.EventHandler(this.btnExecute_Click);
+            // 
+            // listBufferLog
+            // 
+            this.listBufferLog.FormattingEnabled = true;
+            this.listBufferLog.Location = new System.Drawing.Point(243, 103);
+            this.listBufferLog.Name = "listBufferLog";
+            this.listBufferLog.Size = new System.Drawing.Size(169, 160);
+            this.listBufferLog.TabIndex = 21;
+            // 
+            // listBufferDisk
+            // 
+            this.listBufferDisk.FormattingEnabled = true;
+            this.listBufferDisk.Location = new System.Drawing.Point(243, 297);
+            this.listBufferDisk.Name = "listBufferDisk";
+            this.listBufferDisk.Size = new System.Drawing.Size(169, 160);
+            this.listBufferDisk.TabIndex = 22;
+            // 
+            // listBufferData
+            // 
+            this.listBufferData.FormattingEnabled = true;
+            this.listBufferData.Location = new System.Drawing.Point(455, 103);
+            this.listBufferData.Name = "listBufferData";
+            this.listBufferData.Size = new System.Drawing.Size(169, 160);
+            this.listBufferData.TabIndex = 23;
+            // 
+            // listDiskData
+            // 
+            this.listDiskData.FormattingEnabled = true;
+            this.listDiskData.Location = new System.Drawing.Point(455, 297);
+            this.listDiskData.Name = "listDiskData";
+            this.listDiskData.Size = new System.Drawing.Size(169, 160);
+            this.listDiskData.TabIndex = 24;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(955, 449);
+            this.ClientSize = new System.Drawing.Size(957, 502);
+            this.Controls.Add(this.listDiskData);
+            this.Controls.Add(this.listBufferData);
+            this.Controls.Add(this.listBufferDisk);
+            this.Controls.Add(this.listBufferLog);
+            this.Controls.Add(this.btnExecute);
             this.Controls.Add(this.comboRegister);
             this.Controls.Add(this.txtValue);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textValor);
             this.Controls.Add(this.lblRegister);
-            this.Controls.Add(this.listDataDisk);
-            this.Controls.Add(this.listDiskBuffer);
-            this.Controls.Add(this.listDataBuffer);
-            this.Controls.Add(this.listBufferLog);
             this.Controls.Add(this.btnFalha);
             this.Controls.Add(this.btnCheckpoint);
             this.Controls.Add(this.label4);
@@ -215,14 +233,15 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnCheckpoint;
         private System.Windows.Forms.Button btnFalha;
-        private System.Windows.Forms.ListView listBufferLog;
-        private System.Windows.Forms.ListView listDataBuffer;
-        private System.Windows.Forms.ListView listDiskBuffer;
-        private System.Windows.Forms.ListView listDataDisk;
         private System.Windows.Forms.Label lblRegister;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textValor;
         private System.Windows.Forms.Label txtValue;
         private System.Windows.Forms.ComboBox comboRegister;
+        private System.Windows.Forms.Button btnExecute;
+        private System.Windows.Forms.ListBox listBufferLog;
+        private System.Windows.Forms.ListBox listBufferDisk;
+        private System.Windows.Forms.ListBox listBufferData;
+        private System.Windows.Forms.ListBox listDiskData;
     }
 }
 
