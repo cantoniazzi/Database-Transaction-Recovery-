@@ -31,7 +31,7 @@ namespace RecoveryDB
             }
         }
 
-        private void LoadDiskData()
+        public void LoadDiskData()
         {
             diskRow.Clear();
             var reader = streamReader;
@@ -88,7 +88,7 @@ namespace RecoveryDB
             LoadDiskData();
         }
 
-        public Dictionary<string, int> GetDictionaryRegisters()
+        public Dictionary<string, int> GetDictionary()
         {
             var dict = new Dictionary<string, int>();
             LoadDiskData();
