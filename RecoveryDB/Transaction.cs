@@ -8,18 +8,29 @@ namespace RecoveryDB
 {
     class Transaction
     {
-        public int registerID { get; set; }
-        public double beforeImage { get; set; }
-        public double afterImage { get; set; }
+        public int transactionID { get; set; }
+        public bool commited { get; set; }
+        public List<Operation> operations = new List<Operation>();
 
-        public const string tableName = "funcionario";
-        public const int transactionID = 1;
+        private const string constTableName = "funcionario";
 
-        public void setBeforeImage(int _id)
+        public Transaction(int transactionID)
         {
-            DiskData diskData = new DiskData();
-            this.beforeImage = diskData.GetSalaryById(_id);
+            this.transactionID = transactionID;
         }
+        public string tableName
+        {
+            get
+            {
+                return constTableName;
+            }
+        }
+        public void AddOperation(int id, double salary)
+        {
+            operations.Add(new Operation(id, salary));
+        }
+        
+        
         
     }
 }

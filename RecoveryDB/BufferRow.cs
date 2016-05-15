@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace RecoveryDB
 {
-    public class DiskRow : Row
+    public class BufferRow : Row
     {
+
     }
 }

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace RecoveryDB
 {
@@ -31,7 +32,7 @@ namespace RecoveryDB
             }
         }
 
-        private void LoadDiskData()
+        public void LoadDiskData()
         {
             diskRow.Clear();
             var reader = streamReader;
@@ -94,6 +95,18 @@ namespace RecoveryDB
             LoadDiskData();
             diskRow.ForEach(x => dict.Add(x.ID, x.Name));
             return dict;
+        }
+
+        public List<ListViewItem> GetListItems()
+        {
+            var list = new List<ListViewItem>();
+
+            foreach (var row in diskRow)
+            {
+                var array = new string[] { row.ID.ToString(), row.Name, row.Salary.ToString() };
+                list.Add(new ListViewItem(array));
+            }
+            return list;
         }
 
     }

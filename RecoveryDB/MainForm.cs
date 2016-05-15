@@ -13,7 +13,9 @@ namespace RecoveryDB
 {
     public partial class MainForm : Form
     {
-       
+
+        FormController controller = new FormController();
+
         public MainForm()
         {
             InitializeComponent();
@@ -42,28 +44,30 @@ namespace RecoveryDB
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            DiskData diskData = new DiskData();
-            comboRegister.DataSource = new BindingSource(diskData.GetDictionaryRegisters(), null);
-            
-            BufferLog bufferLog = new BufferLog();
-            
+            comboRegister.DataSource = new BindingSource(controller.fillComboRegisters(), null);
+            //listDiskData.Items.AddRange(controller.FillDiskDataList());
+            //listDiskData.Columns.Add("ID");
+            //listDiskData.Columns.Add("Name");
+            //listDiskData.Columns.Add("Salary");
+            //controller.FillDiskDataList().ForEach(x => listDiskData.Items.Add(x));
+            listDiskData.Columns.Add("coluna");
+            listDiskData.Items.Add("lala");
         }
 
         private void btnExecute_Click(object sender, EventArgs e)
         {
             listBufferLog.DataSource = null;
-            Transaction transaction = new Transaction();
-            
-            transaction.setBeforeImage((int)comboRegister.SelectedValue);
-            transaction.afterImage = double.Parse(txtValue.Text);
-            
-            //transaction.transaction = "<inicio TA><fim TA>";
-            //transactions.Add(transaction.transaction);
-            //listBufferLog.DataSource = transactions;
-            
+
+            controller.Execute((int)comboRegister.SelectedValue, double.Parse(txtValue.Text));
+            listBufferLog.DataSource = controller.fillListBufferLog();
         }
 
         private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
         {
 
         }
