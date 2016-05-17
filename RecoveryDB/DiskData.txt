@@ -1,3 +1,5 @@
 ﻿1,Maria,500
 2,João,1000
 3,Cássio,1500
+4,Bãders,500000
+5,Airton, 9000

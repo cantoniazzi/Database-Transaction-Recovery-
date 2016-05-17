@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RecoveryDB
 {
-    public abstract class Row
+    public class Row
     {
         public int ID { get; set; }
         public string Name { get; set; }

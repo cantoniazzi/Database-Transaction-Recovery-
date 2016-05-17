@@ -42,8 +42,10 @@
             this.btnExecute = new System.Windows.Forms.Button();
             this.listBufferLog = new System.Windows.Forms.ListBox();
             this.listLogDisk = new System.Windows.Forms.ListBox();
-            this.listDataBuffer = new System.Windows.Forms.ListView();
-            this.listDiskData = new System.Windows.Forms.ListView();
+            this.gridDataBuffer = new System.Windows.Forms.DataGridView();
+            this.gridDiskData = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.gridDataBuffer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridDiskData)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCommit
@@ -174,38 +176,47 @@
             this.listBufferLog.Name = "listBufferLog";
             this.listBufferLog.Size = new System.Drawing.Size(310, 160);
             this.listBufferLog.TabIndex = 21;
+            this.listBufferLog.SelectedIndexChanged += new System.EventHandler(this.listBufferLog_SelectedIndexChanged);
             // 
             // listLogDisk
             // 
             this.listLogDisk.FormattingEnabled = true;
             this.listLogDisk.Location = new System.Drawing.Point(243, 297);
             this.listLogDisk.Name = "listLogDisk";
-            this.listLogDisk.Size = new System.Drawing.Size(255, 160);
+            this.listLogDisk.Size = new System.Drawing.Size(310, 160);
             this.listLogDisk.TabIndex = 22;
             // 
-            // listDataBuffer
+            // gridDataBuffer
             // 
-            this.listDataBuffer.Location = new System.Drawing.Point(579, 103);
-            this.listDataBuffer.Name = "listDataBuffer";
-            this.listDataBuffer.Size = new System.Drawing.Size(310, 160);
-            this.listDataBuffer.TabIndex = 23;
-            this.listDataBuffer.UseCompatibleStateImageBehavior = false;
+            this.gridDataBuffer.AllowUserToAddRows = false;
+            this.gridDataBuffer.AllowUserToDeleteRows = false;
+            this.gridDataBuffer.AllowUserToOrderColumns = true;
+            this.gridDataBuffer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridDataBuffer.Location = new System.Drawing.Point(579, 103);
+            this.gridDataBuffer.Name = "gridDataBuffer";
+            this.gridDataBuffer.ReadOnly = true;
+            this.gridDataBuffer.Size = new System.Drawing.Size(310, 160);
+            this.gridDataBuffer.TabIndex = 25;
             // 
-            // listDiskData
+            // gridDiskData
             // 
-            this.listDiskData.Location = new System.Drawing.Point(579, 297);
-            this.listDiskData.Name = "listDiskData";
-            this.listDiskData.Size = new System.Drawing.Size(310, 160);
-            this.listDiskData.TabIndex = 24;
-            this.listDiskData.UseCompatibleStateImageBehavior = false;
+            this.gridDiskData.AllowUserToAddRows = false;
+            this.gridDiskData.AllowUserToDeleteRows = false;
+            this.gridDiskData.AllowUserToOrderColumns = true;
+            this.gridDiskData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridDiskData.Location = new System.Drawing.Point(579, 297);
+            this.gridDiskData.Name = "gridDiskData";
+            this.gridDiskData.ReadOnly = true;
+            this.gridDiskData.Size = new System.Drawing.Size(310, 160);
+            this.gridDiskData.TabIndex = 26;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(957, 502);
-            this.Controls.Add(this.listDiskData);
-            this.Controls.Add(this.listDataBuffer);
+            this.Controls.Add(this.gridDiskData);
+            this.Controls.Add(this.gridDataBuffer);
             this.Controls.Add(this.listLogDisk);
             this.Controls.Add(this.listBufferLog);
             this.Controls.Add(this.btnExecute);
@@ -223,6 +234,8 @@
             this.Name = "MainForm";
             this.Text = "Recovery Project";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.gridDataBuffer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridDiskData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,8 +257,8 @@
         private System.Windows.Forms.Button btnExecute;
         private System.Windows.Forms.ListBox listBufferLog;
         private System.Windows.Forms.ListBox listLogDisk;
-        private System.Windows.Forms.ListView listDataBuffer;
-        private System.Windows.Forms.ListView listDiskData;
+        private System.Windows.Forms.DataGridView gridDataBuffer;
+        private System.Windows.Forms.DataGridView gridDiskData;
     }
 }
 

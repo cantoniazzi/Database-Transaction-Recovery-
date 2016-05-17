@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,9 +36,14 @@ namespace RecoveryDB
             return bufferLog.listTransactions();
         }
 
-        public List<ListViewItem> FillDiskDataList()
+        public BindingList<Row> FillDiskDataList()
         {
-            return diskData.GetListItems();
+            return new BindingList<Row>(diskData.diskRow);
+        }
+
+        public BindingList<Row> FillBufferDataList()
+        {
+            return new BindingList<Row>(bufferData.bufferRow);
         }
 
     }

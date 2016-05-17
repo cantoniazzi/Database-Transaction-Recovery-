@@ -13,12 +13,14 @@ namespace RecoveryDBTest
         {
             var diskData = new DiskData();
             diskData.GetRowById(1).ID.Should().Be(1);
+
         }
         [TestMethod]
         public void ReadName()
         {
             var diskData = new DiskData();
             diskData.GetRowById(1).Name.Should().Be("Maria");
+
         }
         [TestMethod]
         public void ReadSalary()
@@ -46,7 +48,7 @@ namespace RecoveryDBTest
         {
             var diskData = new DiskData();
             var dict = diskData.GetDictionaryRegisters();
-            dict["Maria"].Should().Be(1);
+            dict[1].Should().Be("Maria");
         }
     }
 }

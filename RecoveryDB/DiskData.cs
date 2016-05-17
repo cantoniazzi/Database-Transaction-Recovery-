@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace RecoveryDB
 {
     public class DiskData
     {
-        public List<DiskRow> diskRow = new List<DiskRow>();
+        public List<Row> diskRow = new List<Row>();
         string filePath = "DiskData.txt";
         public DiskData()
         {
@@ -45,7 +46,7 @@ namespace RecoveryDB
                 string name = split[1];
                 double salary = double.Parse(split[2]);
 
-                var row = new DiskRow()
+                var row = new Row()
                 {
                     ID = id,
                     Name = name,
@@ -64,7 +65,7 @@ namespace RecoveryDB
             writer.Close();
         }
 
-        public DiskRow GetRowById(int id)
+        public Row GetRowById(int id)
         {
             LoadDiskData();
             return diskRow.Single(x => x.ID.Equals(id));
@@ -95,18 +96,6 @@ namespace RecoveryDB
             LoadDiskData();
             diskRow.ForEach(x => dict.Add(x.ID, x.Name));
             return dict;
-        }
-
-        public List<ListViewItem> GetListItems()
-        {
-            var list = new List<ListViewItem>();
-
-            foreach (var row in diskRow)
-            {
-                var array = new string[] { row.ID.ToString(), row.Name, row.Salary.ToString() };
-                list.Add(new ListViewItem(array));
-            }
-            return list;
         }
 
     }

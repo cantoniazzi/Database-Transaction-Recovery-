@@ -8,9 +8,13 @@ namespace RecoveryDB
 {
     class BufferData
     {
-        List<BufferRow> bufferRow = new List<BufferRow>();
         DiskData diskData = new DiskData();
-
+        public List<Row> bufferRow = new List<Row>();
+        
+        public BufferData()
+        {
+            bufferRow = diskData.diskRow;
+        }
         public void AddToBufferData(int id, double salary)
         {
             if (IDExists(id)) {
@@ -18,7 +22,7 @@ namespace RecoveryDB
             }
             else
             {
-                var row = new BufferRow()
+                var row = new Row()
                 {
                     ID = id,
                     Name = diskData.GetRowById(id).Name,

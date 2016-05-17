@@ -24,7 +24,7 @@ namespace RecoveryDB
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            controller.Commit();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -45,13 +45,9 @@ namespace RecoveryDB
         private void Form1_Load(object sender, EventArgs e)
         {
             comboRegister.DataSource = new BindingSource(controller.fillComboRegisters(), null);
-            //listDiskData.Items.AddRange(controller.FillDiskDataList());
-            //listDiskData.Columns.Add("ID");
-            //listDiskData.Columns.Add("Name");
-            //listDiskData.Columns.Add("Salary");
-            //controller.FillDiskDataList().ForEach(x => listDiskData.Items.Add(x));
-            listDiskData.Columns.Add("coluna");
-            listDiskData.Items.Add("lala");
+            listBufferLog.DataSource = controller.fillListBufferLog();
+            gridDataBuffer.DataSource = controller.FillDiskDataList();
+            gridDiskData.DataSource = controller.FillDiskDataList();
         }
 
         private void btnExecute_Click(object sender, EventArgs e)
@@ -60,6 +56,8 @@ namespace RecoveryDB
 
             controller.Execute((int)comboRegister.SelectedValue, double.Parse(txtValue.Text));
             listBufferLog.DataSource = controller.fillListBufferLog();
+            gridDataBuffer.DataSource = controller.FillBufferDataList();
+
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -68,6 +66,11 @@ namespace RecoveryDB
         }
 
         private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBufferLog_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
