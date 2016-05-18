@@ -8,28 +8,33 @@ namespace RecoveryDB
 {
     class BufferLog
     {
-        public List<Transaction> transactions = new List<Transaction>();
+        public List<Transaction> transactionList = new List<Transaction>();
 
-        public void AddToBufferLog(int id, double salary)
+        public void AddToBufferLog(int transactionID, int id, double salary)
         {
-            if (transactions.Count().Equals(0) || transactions.Last().commited)
+
+            if (transactionID.Equals(0))
             {
-                var transaction = new Transaction(transactions.Count() + 1);
-                transactions.Add(transaction);
+                var transaction = new Transaction(transactionList.Count() + 1);
+                transaction.AddOperation(id, salary);
+                transactionList.Add(transaction);
             }
-            transactions.Last().AddOperation(id, salary);
+            else
+            {
+                transactionList.Single(x => x.transactionID.Equals(transactionID)).AddOperation(id, salary);
+            }
         }
 
         public List<string> listTransactions()
         {
             var list = new List<string>();
 
-            foreach (var transaction in transactions)
+            foreach (var transaction in transactionList)
             {
                 list.Add("<START TA" + transaction.transactionID + ">");
                 foreach (var operation in transaction.operations)
                 {
-                    list.Add("<" + transaction.transactionID + "," 
+                    list.Add("<TA" + transaction.transactionID + "," 
                         + transaction.tableName + "," 
                         + operation.registerID + ", Salary, " 
                         + operation.beforeImage + "," 

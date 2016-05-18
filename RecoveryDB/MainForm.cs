@@ -44,9 +44,9 @@ namespace RecoveryDB
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            comboRegister.DataSource = new BindingSource(controller.fillComboRegisters(), null);
-            listBufferLog.DataSource = controller.fillListBufferLog();
-            gridDataBuffer.DataSource = controller.FillDiskDataList();
+            comboRegister.DataSource = new BindingSource(controller.FillComboRegisters(), null);
+            comboTransaction.DataSource = new BindingSource(controller.FillComboTransactions(), null);
+            listBufferLog.DataSource = controller.FillListBufferLog();
             gridDiskData.DataSource = controller.FillDiskDataList();
         }
 
@@ -54,9 +54,10 @@ namespace RecoveryDB
         {
             listBufferLog.DataSource = null;
 
-            controller.Execute((int)comboRegister.SelectedValue, double.Parse(txtValue.Text));
-            listBufferLog.DataSource = controller.fillListBufferLog();
+            controller.Execute((int)comboTransaction.SelectedValue, (int)comboRegister.SelectedValue, double.Parse(txtValue.Text));
+            listBufferLog.DataSource = controller.FillListBufferLog();
             gridDataBuffer.DataSource = controller.FillBufferDataList();
+            comboTransaction.DataSource = new BindingSource(controller.FillComboTransactions(), null);
 
         }
 
@@ -71,6 +72,16 @@ namespace RecoveryDB
         }
 
         private void listBufferLog_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblRegister_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblValue_Click(object sender, EventArgs e)
         {
 
         }

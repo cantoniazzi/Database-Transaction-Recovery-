@@ -12,7 +12,7 @@ namespace RecoveryDB
         public bool commited { get; set; }
         public List<Operation> operations = new List<Operation>();
 
-        private const string constTableName = "funcionario";
+        private const string constTableName = "Funcionario";
 
         public Transaction(int transactionID)
         {

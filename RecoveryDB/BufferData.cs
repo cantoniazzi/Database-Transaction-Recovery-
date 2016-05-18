@@ -13,9 +13,8 @@ namespace RecoveryDB
         
         public BufferData()
         {
-            bufferRow = diskData.diskRow;
         }
-        public void AddToBufferData(int id, double salary)
+        public void AddToBufferData(int transactionID, int id, double salary)
         {
             if (IDExists(id)) {
                 bufferRow.Single(x => x.ID == id).Salary = salary;
@@ -38,5 +37,12 @@ namespace RecoveryDB
             return bufferRow.Any(x => x.ID == id);
         }
 
+        public Dictionary<int, string> GetDictionaryTransactions()
+        {
+            var dict = new Dictionary<int, string>();
+            dict.Add(0, "New");
+            bufferRow.ForEach(x => dict.Add(x.ID, "TA" + x.ID));
+            return dict;
+        }
     }
 }

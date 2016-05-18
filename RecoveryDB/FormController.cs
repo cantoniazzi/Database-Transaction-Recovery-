@@ -12,13 +12,13 @@ namespace RecoveryDB
     {
         DiskData diskData = new DiskData();
         BufferLog bufferLog = new BufferLog();
-        BufferData bufferData = new BufferData();
+        BufferData dataBuffer = new BufferData();
 
         //
-        public void Execute(int id, double salary)
+        public void Execute(int transactionID, int id, double salary)
         {
-            bufferLog.AddToBufferLog(id, salary);
-            bufferData.AddToBufferData(id, salary);
+            bufferLog.AddToBufferLog(transactionID, id, salary);
+            dataBuffer.AddToBufferData(transactionID, id, salary);
         }
 
         public void Commit()
@@ -26,12 +26,17 @@ namespace RecoveryDB
             
         }
 
-        public Dictionary<int, string> fillComboRegisters()
+        public Dictionary<int, string> FillComboRegisters()
         {
             return diskData.GetDictionaryRegisters();
         }
 
-        public List<string> fillListBufferLog()
+        public Dictionary<int, string> FillComboTransactions()
+        {
+            return dataBuffer.GetDictionaryTransactions();
+        }
+
+        public List<string> FillListBufferLog()
         {
             return bufferLog.listTransactions();
         }
@@ -43,7 +48,7 @@ namespace RecoveryDB
 
         public BindingList<Row> FillBufferDataList()
         {
-            return new BindingList<Row>(bufferData.bufferRow);
+            return new BindingList<Row>(dataBuffer.bufferRow);
         }
 
     }
