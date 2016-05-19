@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RecoveryDB
 {
-    class Operation
+    public class Operation
     {
         public int registerID { get; set; }
         public double beforeImage { get; set; }

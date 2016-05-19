@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RecoveryDB
 {
-    class Transaction
+    public class Transaction
     {
         public int transactionID { get; set; }
         public bool commited { get; set; }

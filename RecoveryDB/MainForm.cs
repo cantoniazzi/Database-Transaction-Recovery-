@@ -13,9 +13,6 @@ namespace RecoveryDB
 {
     public partial class MainForm : Form
     {
-
-        FormController controller = new FormController();
-
         public MainForm()
         {
             InitializeComponent();
@@ -24,7 +21,7 @@ namespace RecoveryDB
 
         private void button1_Click(object sender, EventArgs e)
         {
-            controller.Commit();
+            FormController.Commit();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -44,20 +41,20 @@ namespace RecoveryDB
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            comboRegister.DataSource = new BindingSource(controller.FillComboRegisters(), null);
-            comboTransaction.DataSource = new BindingSource(controller.FillComboTransactions(), null);
-            listBufferLog.DataSource = controller.FillListBufferLog();
-            gridDiskData.DataSource = controller.FillDiskDataList();
+            comboRegister.DataSource = new BindingSource(FormController.FillComboRegisters(), null);
+            comboTransaction.DataSource = new BindingSource(FormController.FillComboTransactions(), null);
+            listBufferLog.DataSource = FormController.FillListBufferLog();
+            gridDiskData.DataSource = FormController.FillDiskDataList();
         }
 
         private void btnExecute_Click(object sender, EventArgs e)
         {
             listBufferLog.DataSource = null;
 
-            controller.Execute((int)comboTransaction.SelectedValue, (int)comboRegister.SelectedValue, double.Parse(txtValue.Text));
-            listBufferLog.DataSource = controller.FillListBufferLog();
-            gridDataBuffer.DataSource = controller.FillBufferDataList();
-            comboTransaction.DataSource = new BindingSource(controller.FillComboTransactions(), null);
+            FormController.Execute((int)comboTransaction.SelectedValue, (int)comboRegister.SelectedValue, double.Parse(txtValue.Text));
+            listBufferLog.DataSource = FormController.FillListBufferLog();
+            gridDataBuffer.DataSource = FormController.FillBufferDataList();
+            comboTransaction.DataSource = new BindingSource(FormController.FillComboTransactions(), null);
 
         }
 
@@ -84,6 +81,11 @@ namespace RecoveryDB
         private void lblValue_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboTransaction_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var i = comboTransaction.SelectedValue;
         }
     }
 }

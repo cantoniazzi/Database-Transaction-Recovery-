@@ -226,6 +226,7 @@
             this.comboTransaction.Size = new System.Drawing.Size(52, 21);
             this.comboTransaction.TabIndex = 27;
             this.comboTransaction.ValueMember = "key";
+            this.comboTransaction.SelectedIndexChanged += new System.EventHandler(this.comboTransaction_SelectedIndexChanged);
             // 
             // label5
             // 

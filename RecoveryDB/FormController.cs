@@ -8,47 +8,47 @@ using System.Windows.Forms;
 
 namespace RecoveryDB
 {
-    class FormController
+    public static class FormController
     {
-        DiskData diskData = new DiskData();
-        BufferLog bufferLog = new BufferLog();
-        BufferData dataBuffer = new BufferData();
+        public static DiskData diskData = new DiskData();
+        public static BufferLog bufferLog = new BufferLog();
+        public static BufferData dataBuffer = new BufferData();
 
         //
-        public void Execute(int transactionID, int id, double salary)
+        public static void Execute(int transactionID, int id, double salary)
         {
             bufferLog.AddToBufferLog(transactionID, id, salary);
             dataBuffer.AddToBufferData(transactionID, id, salary);
         }
 
-        public void Commit()
+        public static void Commit()
         {
             
         }
 
-        public Dictionary<int, string> FillComboRegisters()
+        public static Dictionary<int, string> FillComboRegisters(int currentTransaction)
         {
             return diskData.GetDictionaryRegisters();
         }
 
-        public Dictionary<int, string> FillComboTransactions()
+        public static Dictionary<int, string> FillComboTransactions()
         {
             return dataBuffer.GetDictionaryTransactions();
         }
 
-        public List<string> FillListBufferLog()
+        public static List<string> FillListBufferLog()
         {
             return bufferLog.listTransactions();
         }
 
-        public BindingList<Row> FillDiskDataList()
+        public static BindingList<Row> FillDiskDataList()
         {
             return new BindingList<Row>(diskData.diskRow);
         }
 
-        public BindingList<Row> FillBufferDataList()
+        public static BindingList<BufferRow> FillBufferDataList()
         {
-            return new BindingList<Row>(dataBuffer.bufferRow);
+            return new BindingList<BufferRow>(dataBuffer.bufferRow);
         }
 
     }

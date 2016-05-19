@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="BufferData.cs" />
     <Compile Include="BufferLog.cs" />
+    <Compile Include="BufferRow.cs" />
     <Compile Include="DiskData.cs" />
     <Compile Include="Row.cs" />
     <Compile Include="FormController.cs" />

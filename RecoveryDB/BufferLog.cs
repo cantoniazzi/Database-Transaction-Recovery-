@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace RecoveryDB
 {
-    class BufferLog
+    public class BufferLog
     {
         public List<Transaction> transactionList = new List<Transaction>();
 
         public void AddToBufferLog(int transactionID, int id, double salary)
         {
-
             if (transactionID.Equals(0))
             {
                 var transaction = new Transaction(transactionList.Count() + 1);
