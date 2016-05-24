@@ -64,8 +64,9 @@ namespace RecoveryDB
         }
 
         private void btnExecute_Click(object sender, EventArgs e)
-        {
-            if(txtValue.Text != "")
+        {   
+            int n;
+            if (txtValue.Text != "" && int.TryParse(txtValue.Text, out n))
             {
                 comboTransaction.BackColor = Color.White;
                 txtValue.BackColor = Color.White;
@@ -162,6 +163,10 @@ namespace RecoveryDB
         {
             var about = new About();
             about.Show();
+        }
+
+        private void txtValue_TextChanged(object sender, EventArgs e)
+        {
         }
     }
 }
