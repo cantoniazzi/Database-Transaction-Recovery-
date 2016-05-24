@@ -25,9 +25,9 @@ namespace RecoveryDB
                 return constTableName;
             }
         }
-        public void AddOperation(int id, double salary)
+        public void AddOperation(int id, double salary, double beforeImage)
         {
-            operations.Add(new Operation(id, salary));
+            operations.Add(new Operation(id, salary, beforeImage));
         }
         
         

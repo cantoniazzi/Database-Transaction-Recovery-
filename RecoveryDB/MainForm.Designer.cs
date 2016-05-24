@@ -41,12 +41,13 @@
             this.comboRegister = new System.Windows.Forms.ComboBox();
             this.btnExecute = new System.Windows.Forms.Button();
             this.listBufferLog = new System.Windows.Forms.ListBox();
-            this.listLogDisk = new System.Windows.Forms.ListBox();
+            this.listDiskLog = new System.Windows.Forms.ListBox();
             this.gridDataBuffer = new System.Windows.Forms.DataGridView();
             this.gridDiskData = new System.Windows.Forms.DataGridView();
             this.comboTransaction = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.lblUpdate = new System.Windows.Forms.Label();
+            this.transactionIdLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridDataBuffer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDiskData)).BeginInit();
             this.SuspendLayout();
@@ -80,7 +81,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Data Buffer";
+            this.label2.Text = "Buffer Data";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
@@ -90,7 +91,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 13);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Log Disk";
+            this.label3.Text = "Disk Log";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
@@ -138,6 +139,8 @@
             // 
             // txtValue
             // 
+            this.txtValue.BackColor = System.Drawing.Color.White;
+            this.txtValue.ForeColor = System.Drawing.Color.Black;
             this.txtValue.Location = new System.Drawing.Point(67, 100);
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(121, 20);
@@ -168,7 +171,7 @@
             this.btnExecute.BackColor = System.Drawing.Color.ForestGreen;
             this.btnExecute.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExecute.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnExecute.Location = new System.Drawing.Point(100, 139);
+            this.btnExecute.Location = new System.Drawing.Point(102, 148);
             this.btnExecute.Name = "btnExecute";
             this.btnExecute.Size = new System.Drawing.Size(106, 37);
             this.btnExecute.TabIndex = 20;
@@ -185,13 +188,13 @@
             this.listBufferLog.TabIndex = 21;
             this.listBufferLog.SelectedIndexChanged += new System.EventHandler(this.listBufferLog_SelectedIndexChanged);
             // 
-            // listLogDisk
+            // listDiskLog
             // 
-            this.listLogDisk.FormattingEnabled = true;
-            this.listLogDisk.Location = new System.Drawing.Point(230, 231);
-            this.listLogDisk.Name = "listLogDisk";
-            this.listLogDisk.Size = new System.Drawing.Size(310, 160);
-            this.listLogDisk.TabIndex = 22;
+            this.listDiskLog.FormattingEnabled = true;
+            this.listDiskLog.Location = new System.Drawing.Point(230, 231);
+            this.listDiskLog.Name = "listDiskLog";
+            this.listDiskLog.Size = new System.Drawing.Size(310, 160);
+            this.listDiskLog.TabIndex = 22;
             // 
             // gridDataBuffer
             // 
@@ -221,7 +224,7 @@
             // 
             this.comboTransaction.DisplayMember = "value";
             this.comboTransaction.FormattingEnabled = true;
-            this.comboTransaction.Location = new System.Drawing.Point(13, 155);
+            this.comboTransaction.Location = new System.Drawing.Point(15, 164);
             this.comboTransaction.Name = "comboTransaction";
             this.comboTransaction.Size = new System.Drawing.Size(52, 21);
             this.comboTransaction.TabIndex = 27;
@@ -231,7 +234,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 139);
+            this.label5.Location = new System.Drawing.Point(11, 148);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 13);
             this.label5.TabIndex = 28;
@@ -247,17 +250,28 @@
             this.lblUpdate.TabIndex = 29;
             this.lblUpdate.Text = "UPDATE";
             // 
+            // transactionIdLabel
+            // 
+            this.transactionIdLabel.AutoSize = true;
+            this.transactionIdLabel.ForeColor = System.Drawing.Color.Red;
+            this.transactionIdLabel.Location = new System.Drawing.Point(696, 21);
+            this.transactionIdLabel.Name = "transactionIdLabel";
+            this.transactionIdLabel.Size = new System.Drawing.Size(165, 13);
+            this.transactionIdLabel.TabIndex = 30;
+            this.transactionIdLabel.Text = "Transaction ID: 0 = row unlocked";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(888, 427);
+            this.Controls.Add(this.transactionIdLabel);
             this.Controls.Add(this.lblUpdate);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.comboTransaction);
             this.Controls.Add(this.gridDiskData);
             this.Controls.Add(this.gridDataBuffer);
-            this.Controls.Add(this.listLogDisk);
+            this.Controls.Add(this.listDiskLog);
             this.Controls.Add(this.listBufferLog);
             this.Controls.Add(this.btnExecute);
             this.Controls.Add(this.comboRegister);
@@ -296,12 +310,13 @@
         private System.Windows.Forms.ComboBox comboRegister;
         private System.Windows.Forms.Button btnExecute;
         private System.Windows.Forms.ListBox listBufferLog;
-        private System.Windows.Forms.ListBox listLogDisk;
+        private System.Windows.Forms.ListBox listDiskLog;
         private System.Windows.Forms.DataGridView gridDataBuffer;
         private System.Windows.Forms.DataGridView gridDiskData;
         private System.Windows.Forms.ComboBox comboTransaction;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblUpdate;
+        private System.Windows.Forms.Label transactionIdLabel;
     }
 }
 

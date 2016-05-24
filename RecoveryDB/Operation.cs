@@ -12,17 +12,11 @@ namespace RecoveryDB
         public double beforeImage { get; set; }
         public double afterImage { get; set; }
 
-        public Operation(int id, double salary)
+        public Operation(int id, double afterImage, double beforeImage)
         {
             this.registerID = id;
-            this.setBeforeImage(this.registerID);
-            this.afterImage = salary;
-        }
-
-        public void setBeforeImage(int _id)
-        {
-            DiskData diskData = new DiskData();
-            this.beforeImage = diskData.GetSalaryById(_id);
+            this.beforeImage = beforeImage;
+            this.afterImage = afterImage;
         }
     }
 }

@@ -50,6 +50,7 @@
     <Compile Include="BufferLog.cs" />
     <Compile Include="BufferRow.cs" />
     <Compile Include="DiskData.cs" />
+    <Compile Include="DiskLog.cs" />
     <Compile Include="Row.cs" />
     <Compile Include="FormController.cs" />
     <Compile Include="MainForm.cs">
@@ -91,9 +92,6 @@
     <Content Include="DiskData.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="LogFile.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

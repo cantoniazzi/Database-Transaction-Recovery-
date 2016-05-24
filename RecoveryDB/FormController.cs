@@ -12,33 +12,53 @@ namespace RecoveryDB
     {
         public static DiskData diskData = new DiskData();
         public static BufferLog bufferLog = new BufferLog();
-        public static BufferData dataBuffer = new BufferData();
+        public static BufferData bufferData = new BufferData();
+        public static DiskLog diskLog = new DiskLog();
+        public static int transactionCounter;
 
-        //
         public static void Execute(int transactionID, int id, double salary)
         {
-            bufferLog.AddToBufferLog(transactionID, id, salary);
-            dataBuffer.AddToBufferData(transactionID, id, salary);
+            //Manter essa ordem
+            bufferLog.AddToBufferLog(transactionID, id, salary, GetsBeforeImage(id));
+            bufferData.AddToBufferData(transactionID, id, salary);
         }
 
-        public static void Commit()
+        private static double GetsBeforeImage(int id)
         {
-            
+            if (bufferData.bufferRows.Any(x => x.ID == id))
+            {
+                return bufferData.bufferRows.Single(x => x.ID.Equals(id)).Salary;
+            }else
+            {
+                return diskData.GetSalaryById(id);
+            }
+        }
+
+        public static void Commit(int transactionID)
+        {
+            bufferLog.CommitTransaction(transactionID);
+            bufferData.UnlockTransaction(transactionID);
+            diskLog.CommitTransaction(transactionID);
         }
 
         public static Dictionary<int, string> FillComboRegisters(int currentTransaction)
         {
-            return diskData.GetDictionaryRegisters(dataBuffer.bufferRow,currentTransaction);
+            return diskData.GetDictionaryRegisters(bufferData.bufferRows, currentTransaction);
         }
 
         public static Dictionary<int, string> FillComboTransactions()
         {
-            return dataBuffer.GetDictionaryTransactions();
+            return bufferData.GetDictionaryTransactions();
         }
 
         public static List<string> FillListBufferLog()
         {
             return bufferLog.listTransactions();
+        }
+
+        public static List<string> FillListDiskLog()
+        {
+            return diskLog.listTransactions();
         }
 
         public static BindingList<Row> FillDiskDataList()
@@ -48,7 +68,7 @@ namespace RecoveryDB
 
         public static BindingList<BufferRow> FillBufferDataList()
         {
-            return new BindingList<BufferRow>(dataBuffer.bufferRow);
+            return new BindingList<BufferRow>(bufferData.bufferRows);
         }
 
     }

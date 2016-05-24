@@ -102,7 +102,7 @@ namespace RecoveryDB
                 foreach(var x in diskRow)
                 {
                     var tmp = GetTransactionBufferData(bufferData, x.ID);
-                    if(tmp == null || tmp.TransactionID == currentTransaction)
+                    if(tmp == null || tmp.TransactionID == currentTransaction || tmp.TransactionID == 0)
                     {
                         dict.Add(x.ID, x.Name);
                     }

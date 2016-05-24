@@ -8,56 +8,73 @@ namespace RecoveryDB
 {
     public class BufferData
     {
-        DiskData diskData = new DiskData();
-        public List<BufferRow> bufferRow = new List<BufferRow>();
-        
+        public List<BufferRow> bufferRows = new List<BufferRow>();       
         public BufferData()
         {
         }
         public void AddToBufferData(int transactionID, int id, double salary)
         {
+            var counter = FormController.transactionCounter;
             if (transactionID.Equals(0))
             {
-                if (bufferRow.Count().Equals(0))
-                {
-                    transactionID = 1;
-                }else
-                {
-                    transactionID = bufferRow.Max(x => x.TransactionID) + 1;
-                }
+                transactionID = counter;
             }
+
             if (RegisterExists(id)) {
-                bufferRow.Single(x => x.ID == id).Salary = salary;
+                var currentRow = bufferRows.Single(x => x.ID == id);
+                currentRow.Salary = salary;
+                currentRow.TransactionID = transactionID;
             }
             else
             {
                 var row = new BufferRow()
                 {
                     ID = id,
-                    Name = diskData.GetRowById(id).Name,
+                    Name = FormController.diskData.GetRowById(id).Name,
                     Salary = salary,
                     TransactionID = transactionID
                 };
-                bufferRow.Add(row);
+                bufferRows.Add(row);
             }
+            
         }
 
         private bool RegisterExists(int id)
         {
-            return bufferRow.Any(x => x.ID.Equals(id));
+            return bufferRows.Any(x => x.ID.Equals(id));
         }
 
         private bool TransactionExists(int transactionID)
         {
-            return bufferRow.Any(x => x.TransactionID.Equals(transactionID));
+            return bufferRows.Any(x => x.TransactionID.Equals(transactionID));
         }
 
         public Dictionary<int, string> GetDictionaryTransactions()
         {
             var dict = new Dictionary<int, string>();
             dict.Add(0, "New");
-            FormController.bufferLog.transactionList.ForEach(x => dict.Add(x.transactionID, "TA" + x.transactionID));
+            foreach(var x in bufferRows)
+            {
+                if(x.TransactionID > 0)
+                {
+                    if(!dict.Any(y => y.Key.Equals(x.TransactionID)))
+                    {
+                        dict.Add(x.TransactionID, "TA" + x.TransactionID);
+                    }
+                }
+            }
             return dict;
+        }
+
+        public void UnlockTransaction(int transactionID)
+        {
+            foreach(var x in bufferRows)
+            {
+                if (x.TransactionID.Equals(transactionID))
+                {
+                    x.TransactionID = 0;
+                }
+            }
         }
     }
 }

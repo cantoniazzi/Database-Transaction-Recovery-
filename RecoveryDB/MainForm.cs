@@ -21,7 +21,21 @@ namespace RecoveryDB
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FormController.Commit();
+            if((int)comboTransaction.SelectedValue > 0)
+            {
+                comboTransaction.BackColor = Color.White;
+                txtValue.BackColor = Color.White;
+                transactionIdLabel.Show();
+
+                FormController.Commit((int)comboTransaction.SelectedValue);
+                listBufferLog.DataSource = FormController.FillListBufferLog();
+                comboTransaction.DataSource = new BindingSource(FormController.FillComboTransactions(), null);
+                gridDataBuffer.DataSource = FormController.FillBufferDataList();
+                listDiskLog.DataSource = FormController.FillListDiskLog();
+            }else
+            {
+                comboTransaction.BackColor = Color.FromArgb(255, 128, 128);
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -41,6 +55,9 @@ namespace RecoveryDB
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            transactionIdLabel.Hide();
+
+            FormController.transactionCounter = 0;
             comboRegister.DataSource = new BindingSource(FormController.FillComboRegisters(0), null);
             comboTransaction.DataSource = new BindingSource(FormController.FillComboTransactions(), null);
             listBufferLog.DataSource = FormController.FillListBufferLog();
@@ -49,12 +66,22 @@ namespace RecoveryDB
 
         private void btnExecute_Click(object sender, EventArgs e)
         {
-            listBufferLog.DataSource = null;
+            if(txtValue.Text != "")
+            {
+                comboTransaction.BackColor = Color.White;
+                txtValue.BackColor = Color.White;
 
-            FormController.Execute((int)comboTransaction.SelectedValue, (int)comboRegister.SelectedValue, double.Parse(txtValue.Text));
-            listBufferLog.DataSource = FormController.FillListBufferLog();
-            gridDataBuffer.DataSource = FormController.FillBufferDataList();
-            comboTransaction.DataSource = new BindingSource(FormController.FillComboTransactions(), null);
+                FormController.Execute((int)comboTransaction.SelectedValue, (int)comboRegister.SelectedValue, double.Parse(txtValue.Text));
+                listBufferLog.DataSource = FormController.FillListBufferLog();
+                gridDataBuffer.DataSource = FormController.FillBufferDataList();
+                comboTransaction.DataSource = new BindingSource(FormController.FillComboTransactions(), null);
+                txtValue.Clear();
+            }
+            else
+            {
+                txtValue.BackColor = Color.FromArgb(255, 128, 128);
+            }
+
 
         }
 
