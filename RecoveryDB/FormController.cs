@@ -28,7 +28,7 @@ namespace RecoveryDB
 
         public static Dictionary<int, string> FillComboRegisters(int currentTransaction)
         {
-            return diskData.GetDictionaryRegisters();
+            return diskData.GetDictionaryRegisters(dataBuffer.bufferRow,currentTransaction);
         }
 
         public static Dictionary<int, string> FillComboTransactions()

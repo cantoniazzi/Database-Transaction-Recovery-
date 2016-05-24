@@ -41,7 +41,7 @@ namespace RecoveryDB
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            comboRegister.DataSource = new BindingSource(FormController.FillComboRegisters(), null);
+            comboRegister.DataSource = new BindingSource(FormController.FillComboRegisters(0), null);
             comboTransaction.DataSource = new BindingSource(FormController.FillComboTransactions(), null);
             listBufferLog.DataSource = FormController.FillListBufferLog();
             gridDiskData.DataSource = FormController.FillDiskDataList();
@@ -85,7 +85,7 @@ namespace RecoveryDB
 
         private void comboTransaction_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var i = comboTransaction.SelectedValue;
+            comboRegister.DataSource = new BindingSource(FormController.FillComboRegisters((int)comboTransaction.SelectedValue), null);
         }
     }
 }

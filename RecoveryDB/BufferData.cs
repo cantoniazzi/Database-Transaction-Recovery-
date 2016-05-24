@@ -23,7 +23,7 @@ namespace RecoveryDB
                     transactionID = 1;
                 }else
                 {
-                    transactionID = bufferRow.Max(x => x.TransactionID);
+                    transactionID = bufferRow.Max(x => x.TransactionID) + 1;
                 }
             }
             if (RegisterExists(id)) {

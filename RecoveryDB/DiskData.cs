@@ -90,12 +90,38 @@ namespace RecoveryDB
             LoadDiskData();
         }
 
-        public Dictionary<int, string> GetDictionaryRegisters()
+        public Dictionary<int, string> GetDictionaryRegisters(List<BufferRow> bufferData, int currentTransaction)
         {
             var dict = new Dictionary<int, string>();
             LoadDiskData();
-            diskRow.ForEach(x => dict.Add(x.ID, x.Name));
+            if (!bufferData.Any())
+            {
+                diskRow.ForEach(x => dict.Add(x.ID, x.Name));
+            }else
+            {
+                foreach(var x in diskRow)
+                {
+                    var tmp = GetTransactionBufferData(bufferData, x.ID);
+                    if(tmp == null || tmp.TransactionID == currentTransaction)
+                    {
+                        dict.Add(x.ID, x.Name);
+                    }
+                }
+            }
             return dict;
+        }
+
+        private BufferRow GetTransactionBufferData(List<BufferRow> bufferData, int registerId)
+        {
+            try
+            {
+                return bufferData.Single(x => x.ID == registerId);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            
         }
 
     }
