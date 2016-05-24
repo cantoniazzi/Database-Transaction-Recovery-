@@ -14,7 +14,7 @@ namespace RecoveryDB
         {
             if (transactionID.Equals(0))
             {
-                var transaction = new Transaction(transactionList.Count() + 1);
+                var transaction = new Transaction(FormController.transactionCounter + 1);
                 transaction.AddOperation(id, salary, beforeImage);
                 transactionList.Add(transaction);
                 FormController.transactionCounter++;

@@ -134,12 +134,12 @@ namespace RecoveryDB
             MessageBox.Show("System Error \n" + "0x0004FD290", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             MessageBox.Show("System Error \n" + "0x0827BD6DA", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             FormController.WipeMemory();
-            gridDataBuffer.DataSource = null;
-            listBufferLog.DataSource = null;
+            gridDataBuffer.DataSource = FormController.FillDataBufferList();
+            listBufferLog.DataSource = FormController.FillListBufferLog();
+            comboTransaction.DataSource = new BindingSource(FormController.FillComboTransactions(), null);
             MessageBox.Show("All the data in memory was lost, the system will execute its recovery routine", "System Recovery", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             FormController.Recovery();
             gridDiskData.DataSource = FormController.FillDiskDataList();
-
         }
 
         private void fileToolStripMenuItem_Click(object sender, EventArgs e)

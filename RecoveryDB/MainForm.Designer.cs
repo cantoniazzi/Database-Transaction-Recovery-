@@ -253,7 +253,7 @@
             // 
             this.lblUpdate.AutoSize = true;
             this.lblUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUpdate.Location = new System.Drawing.Point(73, 27);
+            this.lblUpdate.Location = new System.Drawing.Point(73, 37);
             this.lblUpdate.Name = "lblUpdate";
             this.lblUpdate.Size = new System.Drawing.Size(80, 20);
             this.lblUpdate.TabIndex = 29;
@@ -292,7 +292,7 @@
             // resetAllToolStripMenuItem
             // 
             this.resetAllToolStripMenuItem.Name = "resetAllToolStripMenuItem";
-            this.resetAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.resetAllToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.resetAllToolStripMenuItem.Text = "Reset All";
             this.resetAllToolStripMenuItem.Click += new System.EventHandler(this.resetAllToolStripMenuItem_Click);
             // 
