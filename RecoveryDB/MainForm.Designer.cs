@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.btnCommit = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -48,15 +49,20 @@
             this.label5 = new System.Windows.Forms.Label();
             this.lblUpdate = new System.Windows.Forms.Label();
             this.transactionIdLabel = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridDataBuffer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDiskData)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCommit
             // 
             this.btnCommit.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnCommit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCommit.Location = new System.Drawing.Point(67, 215);
+            this.btnCommit.Location = new System.Drawing.Point(67, 230);
             this.btnCommit.Name = "btnCommit";
             this.btnCommit.Size = new System.Drawing.Size(86, 33);
             this.btnCommit.TabIndex = 0;
@@ -108,29 +114,31 @@
             // 
             this.btnCheckpoint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnCheckpoint.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCheckpoint.Location = new System.Drawing.Point(67, 273);
+            this.btnCheckpoint.Location = new System.Drawing.Point(67, 288);
             this.btnCheckpoint.Name = "btnCheckpoint";
             this.btnCheckpoint.Size = new System.Drawing.Size(86, 37);
             this.btnCheckpoint.TabIndex = 9;
             this.btnCheckpoint.Text = "Checkpoint";
             this.btnCheckpoint.UseVisualStyleBackColor = false;
+            this.btnCheckpoint.Click += new System.EventHandler(this.btnCheckpoint_Click);
             // 
             // btnFalha
             // 
             this.btnFalha.BackColor = System.Drawing.Color.Red;
             this.btnFalha.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFalha.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnFalha.Location = new System.Drawing.Point(44, 333);
+            this.btnFalha.Location = new System.Drawing.Point(44, 348);
             this.btnFalha.Name = "btnFalha";
             this.btnFalha.Size = new System.Drawing.Size(125, 39);
             this.btnFalha.TabIndex = 10;
             this.btnFalha.Text = "System Fail/Recovery";
             this.btnFalha.UseVisualStyleBackColor = false;
+            this.btnFalha.Click += new System.EventHandler(this.btnFalha_Click);
             // 
             // lblRegister
             // 
             this.lblRegister.AutoSize = true;
-            this.lblRegister.Location = new System.Drawing.Point(10, 63);
+            this.lblRegister.Location = new System.Drawing.Point(10, 78);
             this.lblRegister.Name = "lblRegister";
             this.lblRegister.Size = new System.Drawing.Size(51, 13);
             this.lblRegister.TabIndex = 16;
@@ -141,7 +149,7 @@
             // 
             this.txtValue.BackColor = System.Drawing.Color.White;
             this.txtValue.ForeColor = System.Drawing.Color.Black;
-            this.txtValue.Location = new System.Drawing.Point(67, 100);
+            this.txtValue.Location = new System.Drawing.Point(67, 115);
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(121, 20);
             this.txtValue.TabIndex = 17;
@@ -149,7 +157,7 @@
             // lblValue
             // 
             this.lblValue.AutoSize = true;
-            this.lblValue.Location = new System.Drawing.Point(25, 103);
+            this.lblValue.Location = new System.Drawing.Point(25, 118);
             this.lblValue.Name = "lblValue";
             this.lblValue.Size = new System.Drawing.Size(36, 13);
             this.lblValue.TabIndex = 18;
@@ -160,7 +168,7 @@
             // 
             this.comboRegister.DisplayMember = "value";
             this.comboRegister.FormattingEnabled = true;
-            this.comboRegister.Location = new System.Drawing.Point(67, 55);
+            this.comboRegister.Location = new System.Drawing.Point(67, 70);
             this.comboRegister.Name = "comboRegister";
             this.comboRegister.Size = new System.Drawing.Size(121, 21);
             this.comboRegister.TabIndex = 19;
@@ -171,7 +179,7 @@
             this.btnExecute.BackColor = System.Drawing.Color.ForestGreen;
             this.btnExecute.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExecute.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnExecute.Location = new System.Drawing.Point(102, 148);
+            this.btnExecute.Location = new System.Drawing.Point(102, 163);
             this.btnExecute.Name = "btnExecute";
             this.btnExecute.Size = new System.Drawing.Size(106, 37);
             this.btnExecute.TabIndex = 20;
@@ -207,6 +215,7 @@
             this.gridDataBuffer.ReadOnly = true;
             this.gridDataBuffer.Size = new System.Drawing.Size(310, 160);
             this.gridDataBuffer.TabIndex = 25;
+            this.gridDataBuffer.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridDataBuffer_CellContentClick);
             // 
             // gridDiskData
             // 
@@ -224,7 +233,7 @@
             // 
             this.comboTransaction.DisplayMember = "value";
             this.comboTransaction.FormattingEnabled = true;
-            this.comboTransaction.Location = new System.Drawing.Point(15, 164);
+            this.comboTransaction.Location = new System.Drawing.Point(15, 179);
             this.comboTransaction.Name = "comboTransaction";
             this.comboTransaction.Size = new System.Drawing.Size(52, 21);
             this.comboTransaction.TabIndex = 27;
@@ -234,7 +243,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 148);
+            this.label5.Location = new System.Drawing.Point(11, 163);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 13);
             this.label5.TabIndex = 28;
@@ -244,7 +253,7 @@
             // 
             this.lblUpdate.AutoSize = true;
             this.lblUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUpdate.Location = new System.Drawing.Point(73, 12);
+            this.lblUpdate.Location = new System.Drawing.Point(73, 27);
             this.lblUpdate.Name = "lblUpdate";
             this.lblUpdate.Size = new System.Drawing.Size(80, 20);
             this.lblUpdate.TabIndex = 29;
@@ -259,6 +268,40 @@
             this.transactionIdLabel.Size = new System.Drawing.Size(165, 13);
             this.transactionIdLabel.TabIndex = 30;
             this.transactionIdLabel.Text = "Transaction ID: 0 = row unlocked";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.aboutToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(888, 24);
+            this.menuStrip1.TabIndex = 31;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.resetAllToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            this.fileToolStripMenuItem.Click += new System.EventHandler(this.fileToolStripMenuItem_Click);
+            // 
+            // resetAllToolStripMenuItem
+            // 
+            this.resetAllToolStripMenuItem.Name = "resetAllToolStripMenuItem";
+            this.resetAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.resetAllToolStripMenuItem.Text = "Reset All";
+            this.resetAllToolStripMenuItem.Click += new System.EventHandler(this.resetAllToolStripMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -285,11 +328,16 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCommit);
+            this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
-            this.Text = "Recovery Project";
+            this.Text = "Database Transaction Recovery Subsystem";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridDataBuffer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDiskData)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -317,6 +365,10 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblUpdate;
         private System.Windows.Forms.Label transactionIdLabel;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 

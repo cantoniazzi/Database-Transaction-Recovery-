@@ -16,7 +16,6 @@ namespace RecoveryDB
         public MainForm()
         {
             InitializeComponent();
-            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -30,7 +29,7 @@ namespace RecoveryDB
                 FormController.Commit((int)comboTransaction.SelectedValue);
                 listBufferLog.DataSource = FormController.FillListBufferLog();
                 comboTransaction.DataSource = new BindingSource(FormController.FillComboTransactions(), null);
-                gridDataBuffer.DataSource = FormController.FillBufferDataList();
+                gridDataBuffer.DataSource = FormController.FillDataBufferList();
                 listDiskLog.DataSource = FormController.FillListDiskLog();
             }else
             {
@@ -73,7 +72,7 @@ namespace RecoveryDB
 
                 FormController.Execute((int)comboTransaction.SelectedValue, (int)comboRegister.SelectedValue, double.Parse(txtValue.Text));
                 listBufferLog.DataSource = FormController.FillListBufferLog();
-                gridDataBuffer.DataSource = FormController.FillBufferDataList();
+                gridDataBuffer.DataSource = FormController.FillDataBufferList();
                 comboTransaction.DataSource = new BindingSource(FormController.FillComboTransactions(), null);
                 txtValue.Clear();
             }
@@ -81,8 +80,6 @@ namespace RecoveryDB
             {
                 txtValue.BackColor = Color.FromArgb(255, 128, 128);
             }
-
-
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -113,6 +110,58 @@ namespace RecoveryDB
         private void comboTransaction_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboRegister.DataSource = new BindingSource(FormController.FillComboRegisters((int)comboTransaction.SelectedValue), null);
+        }
+
+        private void btnCheckpoint_Click(object sender, EventArgs e)
+        {
+            if (FormController.bufferLog.transactionList.Any())
+            {
+                FormController.Checkpoint();
+                listDiskLog.DataSource = FormController.FillListDiskLog();
+                gridDiskData.DataSource = FormController.FillDiskDataList();
+            }
+            
+        }
+
+        private void gridDataBuffer_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnFalha_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("System Error \n" + "0x00003204c", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("System Error \n" + "0x0004FD290", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("System Error \n" + "0x0827BD6DA", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            FormController.WipeMemory();
+            gridDataBuffer.DataSource = null;
+            listBufferLog.DataSource = null;
+            MessageBox.Show("All the data in memory was lost, the system will execute its recovery routine", "System Recovery", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            FormController.Recovery();
+            gridDiskData.DataSource = FormController.FillDiskDataList();
+
+        }
+
+        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void resetAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormController.bufferData.bufferRows.Clear();
+            FormController.bufferLog.transactionList.Clear();
+            FormController.diskLog.transactionList.Clear();
+
+            gridDataBuffer.DataSource = null;
+            listBufferLog.DataSource = null;
+            listDiskLog.DataSource = null;
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var about = new About();
+            about.Show();
         }
     }
 }

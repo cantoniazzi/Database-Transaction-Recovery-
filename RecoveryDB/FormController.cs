@@ -23,6 +23,7 @@ namespace RecoveryDB
             bufferData.AddToBufferData(transactionID, id, salary);
         }
 
+        //Se na mesma transação for alterado a mesma linha, BeforeImage = Valor respectivo no BufferData
         private static double GetsBeforeImage(int id)
         {
             if (bufferData.bufferRows.Any(x => x.ID == id))
@@ -36,11 +37,89 @@ namespace RecoveryDB
 
         public static void Commit(int transactionID)
         {
+            //se a transação já existe no disk log, apaga e escreve de novo
+            //ex: commit em uma transação já no disk log via checkpoint
+            if (diskLog.transactionList.Any(x => x.transactionID == transactionID))
+            {
+                diskLog.transactionList.Remove(diskLog.transactionList.Single(z => z.transactionID == transactionID));
+            }
             bufferLog.CommitTransaction(transactionID);
             bufferData.UnlockTransaction(transactionID);
             diskLog.CommitTransaction(transactionID);
         }
 
+        public static void Checkpoint()
+        {
+            BufferLogToDiskLog();
+            BufferDataToDiskData();
+        }
+
+        private static void BufferDataToDiskData()
+        {
+            foreach(var x in bufferData.bufferRows)
+            {
+                diskData.SetSalaryById(x.ID, x.Salary);
+            }
+        }
+
+        private static void BufferLogToDiskLog()
+        {
+            //pega as transações não commitadas
+            var transactionsToAdd = bufferLog.transactionList.Where(x => x.commited == false).ToList();
+
+            foreach (var x in transactionsToAdd)
+            {
+                //se a transação já existe no disk log, apaga e escreve de novo
+                if(diskLog.transactionList.Any(y => y.transactionID == x.transactionID))
+                {
+                    diskLog.transactionList.Remove(diskLog.transactionList.Single(z => z.transactionID == x.transactionID));
+                }
+                diskLog.transactionList.Add(x);
+            }
+        }
+
+        //REVISAR
+        public static void Recovery()
+        {
+            var transactionList = diskLog.transactionList;
+            for (var i = transactionList.Count() - 1; i >= 0; i--)
+            {
+                if (transactionList[i].commited)
+                {
+                    Redo(transactionList[i].operations);
+                }
+                else
+                {
+                    Undo(transactionList[i].operations);
+                }
+            }
+        }
+        //REVISAR
+        private static void Redo(List<Operation> operationList)
+        {
+            for (var i = 0; i < operationList.Count(); i++)
+            {
+                var currentOperation = operationList[i];
+                diskData.SetSalaryById(currentOperation.registerID, currentOperation.afterImage);
+            }
+        }
+        //REVISAR
+        private static void Undo(List<Operation> operationList)
+        {
+            for (var i = operationList.Count - 1; i >= 0 ; i--)
+            {
+                var currentOperation = operationList[i];
+                if(diskData.GetSalaryById(currentOperation.registerID) == currentOperation.afterImage)
+                {
+                    diskData.SetSalaryById(currentOperation.registerID, currentOperation.beforeImage);
+                }
+            }
+        }
+        public static void WipeMemory()
+        {
+            bufferData.bufferRows.Clear();
+            bufferLog.transactionList.Clear();
+        }
         public static Dictionary<int, string> FillComboRegisters(int currentTransaction)
         {
             return diskData.GetDictionaryRegisters(bufferData.bufferRows, currentTransaction);
@@ -66,7 +145,7 @@ namespace RecoveryDB
             return new BindingList<Row>(diskData.diskRow);
         }
 
-        public static BindingList<BufferRow> FillBufferDataList()
+        public static BindingList<BufferRow> FillDataBufferList()
         {
             return new BindingList<BufferRow>(bufferData.bufferRows);
         }
