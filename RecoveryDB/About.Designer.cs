@@ -91,9 +91,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(159, 285);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(85, 13);
+            this.label5.Size = new System.Drawing.Size(141, 13);
             this.label5.TabIndex = 6;
-            this.label5.Text = "Maria, a vira-lata";
+            this.label5.Text = "Maria, a genius computer cã";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // About

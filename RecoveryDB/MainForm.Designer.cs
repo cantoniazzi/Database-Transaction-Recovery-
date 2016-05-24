@@ -62,9 +62,9 @@
             // 
             this.btnCommit.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnCommit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCommit.Location = new System.Drawing.Point(67, 230);
+            this.btnCommit.Location = new System.Drawing.Point(67, 231);
             this.btnCommit.Name = "btnCommit";
-            this.btnCommit.Size = new System.Drawing.Size(86, 33);
+            this.btnCommit.Size = new System.Drawing.Size(106, 33);
             this.btnCommit.TabIndex = 0;
             this.btnCommit.Text = "Commit";
             this.btnCommit.UseVisualStyleBackColor = false;
@@ -116,7 +116,7 @@
             this.btnCheckpoint.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCheckpoint.Location = new System.Drawing.Point(67, 288);
             this.btnCheckpoint.Name = "btnCheckpoint";
-            this.btnCheckpoint.Size = new System.Drawing.Size(86, 37);
+            this.btnCheckpoint.Size = new System.Drawing.Size(106, 37);
             this.btnCheckpoint.TabIndex = 9;
             this.btnCheckpoint.Text = "Checkpoint";
             this.btnCheckpoint.UseVisualStyleBackColor = false;
@@ -127,9 +127,9 @@
             this.btnFalha.BackColor = System.Drawing.Color.Red;
             this.btnFalha.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFalha.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnFalha.Location = new System.Drawing.Point(44, 348);
+            this.btnFalha.Location = new System.Drawing.Point(12, 348);
             this.btnFalha.Name = "btnFalha";
-            this.btnFalha.Size = new System.Drawing.Size(125, 39);
+            this.btnFalha.Size = new System.Drawing.Size(202, 43);
             this.btnFalha.TabIndex = 10;
             this.btnFalha.Text = "System Fail/Recovery";
             this.btnFalha.UseVisualStyleBackColor = false;
@@ -180,7 +180,7 @@
             this.btnExecute.BackColor = System.Drawing.Color.ForestGreen;
             this.btnExecute.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExecute.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnExecute.Location = new System.Drawing.Point(102, 163);
+            this.btnExecute.Location = new System.Drawing.Point(99, 170);
             this.btnExecute.Name = "btnExecute";
             this.btnExecute.Size = new System.Drawing.Size(106, 37);
             this.btnExecute.TabIndex = 20;

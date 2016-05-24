@@ -153,6 +153,9 @@ namespace RecoveryDB
             FormController.bufferData.bufferRows.Clear();
             FormController.bufferLog.transactionList.Clear();
             FormController.diskLog.transactionList.Clear();
+            FormController.transactionCounter = 0;
+
+            comboTransaction.DataSource = new BindingSource(FormController.FillComboTransactions(), null);
 
             gridDataBuffer.DataSource = null;
             listBufferLog.DataSource = null;
