@@ -153,6 +153,7 @@
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(121, 20);
             this.txtValue.TabIndex = 17;
+            this.txtValue.TextChanged += new System.EventHandler(this.txtValue_TextChanged);
             // 
             // lblValue
             // 
