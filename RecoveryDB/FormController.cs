@@ -81,36 +81,31 @@ namespace RecoveryDB
         //REVISAR
         public static void Recovery()
         {
-            var transactionList = diskLog.transactionList;
+            var commitedList = diskLog.transactionList.Where(x => x.commited == true).ToList();
+            var nonCommitedList = diskLog.transactionList.Where(x => x.commited == false).ToList();
+
+            Redo(commitedList);
+            Undo(nonCommitedList);
+        }
+        //REVISAR
+        private static void Redo(List<Transaction> transactionList)
+        {
+            foreach (var transaction in transactionList)
+            {
+                foreach (var operation in transaction.operations)
+                {
+                    diskData.SetSalaryById(operation.registerID, operation.afterImage);
+                }
+            }
+        }
+        //REVISAR
+        private static void Undo(List<Transaction> transactionList)
+        {
             for (var i = transactionList.Count() - 1; i >= 0; i--)
             {
-                if (transactionList[i].commited)
+                for (var j = transactionList[i].operations.Count() - 1; j >= 0; j--)
                 {
-                    Redo(transactionList[i].operations);
-                }
-                else
-                {
-                    Undo(transactionList[i].operations);
-                }
-            }
-        }
-        //REVISAR
-        private static void Redo(List<Operation> operationList)
-        {
-            for (var i = 0; i < operationList.Count(); i++)
-            {
-                var currentOperation = operationList[i];
-                diskData.SetSalaryById(currentOperation.registerID, currentOperation.afterImage);
-            }
-        }
-        //REVISAR
-        private static void Undo(List<Operation> operationList)
-        {
-            for (var i = operationList.Count - 1; i >= 0 ; i--)
-            {
-                var currentOperation = operationList[i];
-                if(diskData.GetSalaryById(currentOperation.registerID) == currentOperation.afterImage)
-                {
+                    var currentOperation = transactionList[i].operations[j];
                     diskData.SetSalaryById(currentOperation.registerID, currentOperation.beforeImage);
                 }
             }
